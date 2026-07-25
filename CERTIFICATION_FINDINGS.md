@@ -7,6 +7,7 @@ Gateway timeout does not prove authorization failed.
 Action
 
 Perform Inquiry using the original request ID.
+If Inquiry confirms approval, this implementation completes the transaction as APPROVED.
 
 ---
 

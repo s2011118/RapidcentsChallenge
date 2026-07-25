@@ -28,3 +28,10 @@
 - Transactions persisted as AUTHORIZING, RESOLVING_UNKNOWN or REVERSAL_PENDING are recoverable.
 - Recovery resumes using the original identifiers.
 - Recovery never sends another authorization.
+
+## Timeout Recovery Interpretation
+
+In this implementation, a gateway timeout is treated as an uncertain outcome rather than an immediate decline.
+If a subsequent Inquiry confirms that the original authorization was approved, the payment engine treats the transaction as successfully authorized, because the gateway is considered the source of truth.
+Therefore, the transaction is persisted as APPROVED and no reversal is performed in this recovery path.
+This behaviour represents the design decision adopted for this challenge. Production payment systems may instead require an automatic reversal after a timeout, depending on gateway and acquirer rules.
